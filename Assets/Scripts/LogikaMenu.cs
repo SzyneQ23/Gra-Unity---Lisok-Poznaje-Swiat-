@@ -1,43 +1,56 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections; // Potrzebne do obsługi płynnego zanikania
+using System.Collections;
 
 public class LogikaMenu : MonoBehaviour
 {
-    // Zmieniamy na CanvasGroup, aby móc sterować przezroczystością (Alpha)
     public CanvasGroup panelPrzyciskowCG; 
     public CanvasGroup panelTytuluGryCG;
-    public GameObject globus;
+    public GameObject globus; // To Twój Globus_Base
 
-    public float szybkoscZanikania = 2.0f; // Regulacja tempa (wyższa liczba = szybciej)
+    public float stopienPowiekszeniaGlobusa;
+
+    public float szybkoscZanikania = 2.0f;
 
     public void StartGry()
     {
-        // Najpierw włączamy globus w tle
-        if (globus != null) globus.SetActive(true);
+        if (globus != null)
+        {
+            globus.SetActive(true);
+            // Ustawiamy skalę globusa na 0, żeby był niewidoczny na starcie
+            globus.transform.localScale = Vector3.zero; 
+        }
         
-        // Rozpoczynamy proces płynnego znikania
-        StartCoroutine(PlynneZnikanieMenu());
+        StartCoroutine(PlynnePrzejscie());
     }
 
-    IEnumerator PlynneZnikanieMenu()
+    IEnumerator PlynnePrzejscie()
     {
-        // Pętla wykonuje się, dopóki napisy są chociaż trochę widoczne
-        while (panelPrzyciskowCG.alpha > 0 || panelTytuluGryCG.alpha > 0)
-        {
-            float zmiana = Time.deltaTime * szybkoscZanikania;
-            
-            // Zmniejszamy widoczność obu paneli
-            panelPrzyciskowCG.alpha -= zmiana;
-            panelTytuluGryCG.alpha -= zmiana;
+        float progress = 0;
 
-            yield return null; // Czekaj na następną klatkę
+        while (progress < stopienPowiekszeniaGlobusa)
+        {
+            progress += Time.deltaTime * szybkoscZanikania;
+
+            // 1. Zanikanie UI
+            panelPrzyciskowCG.alpha = 1 - progress;
+            panelTytuluGryCG.alpha = 1 - progress;
+
+            // 2. Płynne powiększanie globusa (od 0 do 1)
+            if (globus != null)
+            {
+                globus.transform.localScale = Vector3.one * progress;
+            }
+
+            yield return null;
         }
 
-        // Gdy już całkiem znikną, wyłączamy obiekty całkowicie (dla optymalizacji)
+        // Finalne wyłączenie UI
         panelPrzyciskowCG.gameObject.SetActive(false);
         panelTytuluGryCG.gameObject.SetActive(false);
     }
+    
+    // ... reszta kodu (Wyjdz itp.)
 
     public void Wyjdz()
     {
