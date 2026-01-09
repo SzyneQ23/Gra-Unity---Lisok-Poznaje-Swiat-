@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     private const string keyHighScore="HighScoreLevel1";
     public TMP_Text highScoreText;
     public TMP_Text endScreenScoreText;
-    
+    public bool hasGoldPlatform = false;
     public void AddKeys(int keyNumber)
     {
         if (keyNumber==0)

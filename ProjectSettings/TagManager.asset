@@ -14,6 +14,7 @@ TagManager:
   - Castle
   - PlatformPickup
   - ResetFace
+  - PlatformCount
   layers:
   - Default
   - TransparentFX
