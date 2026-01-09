@@ -5,17 +5,23 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement parameters")]
-    [Range(0.01f, 20.0f)] [SerializeField] private float moveSpeed = 0.1f;
-    [Range(1.0f, 20.0f)] [SerializeField] private float jumpForce = 6.0f;
+    [Range(0.01f, 20.0f)][SerializeField] private float moveSpeed = 0.1f;
+    [Range(1.0f, 20.0f)][SerializeField] private float jumpForce = 6.0f;
     [Space(10)]
     [SerializeField] private LayerMask groundLayer;
-    const float rayLength = 0.2f;
+    [SerializeField] private float dashSpeed = 3.0f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1.0f;
+    [SerializeField] private GameObject dashObject;
     private Rigidbody2D rigidBody;
     private BoxCollider2D coll;
 
     private Animator animator;
     private bool isRunning = false;
+    private bool isDashing = false;
     private bool isFacingRight = true;
+    private bool canDash = true;
+    private TrailRenderer[] dashTrails;
     Vector2 startPosition;
 
     [Header("Darkness System")]
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        dashTrails = dashObject.GetComponentsInChildren<TrailRenderer>();
         
         if (ghostPreview) ghostPreview.SetActive(false);
     }
@@ -62,6 +69,40 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Debug.Log("jumping");
+        }
+    }
+
+    IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        isRunning = true;
+        animator.SetBool("isRunning", isRunning);
+        float originalGravity = rigidBody.gravityScale;
+        rigidBody.gravityScale = 0;
+        rigidBody.linearVelocity = Vector2.zero;
+        float direction = isFacingRight ? 1 : -1;
+        float timer = dashDuration;
+        UpdateTrailEmmiting(true);
+        while (timer > 0)
+        {
+            transform.Translate(direction * dashSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        UpdateTrailEmmiting(false);
+        rigidBody.linearVelocity = Vector2.zero;
+        rigidBody.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
+    private void UpdateTrailEmmiting(bool isEmitting)
+    {
+        foreach (TrailRenderer trail in dashTrails)
+        {
+            trail.emitting = isEmitting;
         }
     }
 
@@ -153,6 +194,13 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == GameState.GAME)
         {
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash && !isDashing)
+            {
+                StartCoroutine(Dash());
+            }
+
+            if (isDashing) return;
+
             isRunning = false;
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
