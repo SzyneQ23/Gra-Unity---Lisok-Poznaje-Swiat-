@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Platformer_48.sln"
+    "dotnet.defaultSolution": "LisokMII.sln"
 }
