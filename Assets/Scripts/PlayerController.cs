@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash()
     {
+        animator.SetBool("isRunning", true);
         canDash = false;
         isDashing = true;
         isRunning = true;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.linearVelocity = Vector2.zero;
         rigidBody.gravityScale = originalGravity;
         isDashing = false;
+        animator.SetBool("isRunning", false);
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
@@ -194,6 +196,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == GameState.GAME)
         {
+            float verticalVelocity = rigidBody.linearVelocity.y;
+            animator.SetFloat("verticalSpeed", verticalVelocity);
+
             if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash && !isDashing)
             {
                 StartCoroutine(Dash());
