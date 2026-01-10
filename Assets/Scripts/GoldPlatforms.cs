@@ -6,13 +6,10 @@ public class GoldPlatform : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            // 1. Zapisujemy w GameManagerze, że mamy przedmiot
             GameManager.instance.hasGoldPlatform = true;
 
-            // 2. Zapalamy ikonkę w UI
             UIManager.instance.ActivateGoldIcon();
 
-            // 3. Usuwamy przedmiot ze świata
             Destroy(gameObject);
         }
     }

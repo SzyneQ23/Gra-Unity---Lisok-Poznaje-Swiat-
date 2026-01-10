@@ -6,7 +6,7 @@ public class LogikaMenu : MonoBehaviour
 {
     public CanvasGroup panelPrzyciskowCG; 
     public CanvasGroup panelTytuluGryCG;
-    public GameObject globus; // To Twój Globus_Base
+    public GameObject globus; 
 
     public float stopienPowiekszeniaGlobusa;
 
@@ -17,7 +17,6 @@ public class LogikaMenu : MonoBehaviour
         if (globus != null)
         {
             globus.SetActive(true);
-            // Ustawiamy skalę globusa na 0, żeby był niewidoczny na starcie
             globus.transform.localScale = Vector3.zero; 
         }
         
@@ -32,11 +31,9 @@ public class LogikaMenu : MonoBehaviour
         {
             progress += Time.deltaTime * szybkoscZanikania;
 
-            // 1. Zanikanie UI
             panelPrzyciskowCG.alpha = 1 - progress;
             panelTytuluGryCG.alpha = 1 - progress;
 
-            // 2. Płynne powiększanie globusa (od 0 do 1)
             if (globus != null)
             {
                 globus.transform.localScale = Vector3.one * progress;
@@ -45,12 +42,10 @@ public class LogikaMenu : MonoBehaviour
             yield return null;
         }
 
-        // Finalne wyłączenie UI
         panelPrzyciskowCG.gameObject.SetActive(false);
         panelTytuluGryCG.gameObject.SetActive(false);
     }
     
-    // ... reszta kodu (Wyjdz itp.)
 
     public void Wyjdz()
     {

@@ -4,7 +4,7 @@ using System.Collections;
 public class DarknessController : MonoBehaviour
 {
     public SpriteRenderer darknessSprite; 
-    public float fadeSpeed = 2.0f; // Zwiększmy do 2 sekund, żeby lepiej widzieć test
+    public float fadeSpeed = 2.0f; 
 
     private Coroutine fadeCoroutine;
 
@@ -13,7 +13,7 @@ public class DarknessController : MonoBehaviour
         if (col.CompareTag("Player")) 
         {
             Debug.Log("Lis wszedł do zamku - start ściemniania");
-            StartFade(1.0f); // Docelowo czarny
+            StartFade(1.0f); 
         }
     }
 
@@ -22,7 +22,7 @@ public class DarknessController : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             Debug.Log("Lis wyszedł z zamku - start rozjaśniania");
-            StartFade(0.0f); // Docelowo przezroczysty
+            StartFade(0.0f); 
         }
     }
 
@@ -43,7 +43,6 @@ public class DarknessController : MonoBehaviour
         while (timer < fadeSpeed)
         {
             timer += Time.deltaTime;
-            // Lerp płynnie przechodzi między startAlpha a targetAlpha
             color.a = Mathf.Lerp(startAlpha, targetAlpha, timer / fadeSpeed);
             darknessSprite.color = color;
             yield return null; 
