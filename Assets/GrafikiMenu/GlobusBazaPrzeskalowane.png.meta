@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GlobusBazaPrzeskalowane_0: 5208143801348546362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
