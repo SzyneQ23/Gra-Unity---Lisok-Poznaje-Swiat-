@@ -5,7 +5,7 @@ public class LockRing : MonoBehaviour
     private float targetRotation;
     public float rotationSpeed = 10f;
     public float TargetRotation => targetRotation; 
-
+    public AudioClip sfxObrot;
     void Start()
     {
         targetRotation = Random.Range(0, 4) * 90f;
@@ -21,6 +21,7 @@ public class LockRing : MonoBehaviour
     public void Rotate()
     {
         targetRotation += 90f;
+        GetComponent<AudioSource>().PlayOneShot(sfxObrot);
     }
 
     public bool IsDoneRotating()

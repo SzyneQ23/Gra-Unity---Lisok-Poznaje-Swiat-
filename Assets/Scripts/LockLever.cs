@@ -5,7 +5,7 @@ public class LockLever : MonoBehaviour
     public int leverID;
     private Animator anim;
     private bool isPlayerInRange = false; 
-
+    public AudioClip sfxKlik;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,7 +42,7 @@ public class LockLever : MonoBehaviour
         {
             anim.SetTrigger("Pull");
         }
-
+        GetComponent<AudioSource>().PlayOneShot(sfxKlik);
         CoreLockManager.instance.UseLever(leverID);
         Debug.Log("Dźwignia " + leverID + " zadziałała błyskawicznie!");
     }
