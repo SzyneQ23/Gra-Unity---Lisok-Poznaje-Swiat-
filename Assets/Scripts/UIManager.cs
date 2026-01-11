@@ -5,7 +5,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public Image goldIcon; 
+    public Image goldIconPlatform;
+    public Image goldIconLever; 
     
     [Header("Ustawienia Koloru")]
     public Color activeColor = Color.yellow; 
@@ -15,11 +16,21 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-    public void ActivateGoldIcon()
+    public void ActivateGoldIconPlatform()
     {
-        if (goldIcon != null)
+        if (goldIconPlatform != null)
         {
-            goldIcon.color = activeColor;
+            goldIconPlatform.color = activeColor;
+            
+            Debug.Log("HUD: Ikonka świeci teraz na żółto!");
+        }
+    }
+
+     public void ActivateGoldIconLever()
+    {
+        if (goldIconLever != null)
+        {
+            goldIconLever.color = activeColor;
             
             Debug.Log("HUD: Ikonka świeci teraz na żółto!");
         }

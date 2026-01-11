@@ -48,11 +48,15 @@ public class SlugController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (isDead) return;
+
         if (col.CompareTag("Player"))
         {
-            if (col.gameObject.transform.position.y > transform.position.y + 0.1f)
+            bool isFallingOnTop = col.attachedRigidbody.linearVelocity.y < 0 && col.transform.position.y > transform.position.y;
+
+            if (isFallingOnTop)
             {
-                col.attachedRigidbody.linearVelocityY = 0;
+                col.attachedRigidbody.linearVelocity = new Vector2(col.attachedRigidbody.linearVelocity.x, 0);
                 col.attachedRigidbody.AddForce(Vector2.up * 3.0f, ForceMode2D.Impulse);
                 Kill();
             }
