@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text highScoreText;
     public TMP_Text endScreenScoreText;
     public bool hasGoldPlatform = false;
+    public bool hasGoldLever= false;
+    public bool hasGoldSkull = false;
     public void AddKeys(int keyNumber)
     {
         if (keyNumber==0)
@@ -209,6 +211,11 @@ public class GameManager : MonoBehaviour
                 InGame();
                 Debug.Log("Playtime");
             }
+        }
+
+        if(hasGoldLever && hasGoldPlatform && hasGoldSkull)
+        {
+            keysCompleted=true;
         }
     }
 }

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     public Image goldIconPlatform;
     public Image goldIconLever; 
+    public Image goldIconSkull;
     
     [Header("Ustawienia Koloru")]
     public Color activeColor = Color.yellow; 
@@ -31,6 +32,16 @@ public class UIManager : MonoBehaviour
         if (goldIconLever != null)
         {
             goldIconLever.color = activeColor;
+            
+            Debug.Log("HUD: Ikonka świeci teraz na żółto!");
+        }
+    }
+
+      public void ActivateGoldIconSkull()
+    {
+        if (goldIconSkull != null)
+        {
+            goldIconSkull.color = activeColor;
             
             Debug.Log("HUD: Ikonka świeci teraz na żółto!");
         }

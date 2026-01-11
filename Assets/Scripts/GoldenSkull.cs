@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class GoldenLever : MonoBehaviour
+public class GoldenSkull : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            GameManager.instance.hasGoldLever = true;
+            GameManager.instance.hasGoldSkull = true;
 
-            UIManager.instance.ActivateGoldIconLever();
+            UIManager.instance.ActivateGoldIconSkull();
 
             Destroy(gameObject);
         }
