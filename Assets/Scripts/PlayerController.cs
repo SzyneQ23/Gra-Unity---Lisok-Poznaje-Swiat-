@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
             if(GameManager.instance.lives==0)
             {
-                GameManager.instance.LevelCompleted();
+                GameManager.instance.GameOver();
             }
         }
         if (col.CompareTag("Bonus"))

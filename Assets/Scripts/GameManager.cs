@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 public enum GameState
 {
     [InspectorName( "Gameplay" )] GAME,
@@ -12,7 +13,6 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-
     public GameState currentGameState=GameState.GAME;
     public static GameManager instance;
     private int score=0;
@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour
     public bool hasGoldPlatform = false;
     public bool hasGoldLever= false;
     public bool hasGoldSkull = false;
+
+    public AudioSource audioSource;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+
     public void AddKeys(int keyNumber)
     {
         if (keyNumber==0)
@@ -83,7 +88,6 @@ public class GameManager : MonoBehaviour
             }
             lives+=livesNumber;
         }
-        
     }
     
     void SetGameState(GameState newGameState)
@@ -116,24 +120,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void InGame()
     {
         SetGameState(GameState.GAME);
     }
 
-     public void PauseMenu()
+    public void PauseMenu()
     {
         SetGameState(GameState.PAUSE_MENU);
     }
 
     public void LevelCompleted()
     {
+        if(audioSource != null && winSound != null) audioSource.PlayOneShot(winSound);
         SetGameState(GameState.LEVEL_COMPLETED);
     }
 
     public void GameOver()
     {
+        if(audioSource != null && loseSound != null) audioSource.PlayOneShot(loseSound);
         SetGameState(GameState.LEVEL_COMPLETED);
     }
 
@@ -188,11 +193,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameMenu");
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         timer+=Time.deltaTime;
@@ -204,12 +204,10 @@ public class GameManager : MonoBehaviour
             if (currentGameState==GameState.GAME)
             {
                 PauseMenu();
-                Debug.Log("Pause");
             }
             else
             {
                 InGame();
-                Debug.Log("Playtime");
             }
         }
 
