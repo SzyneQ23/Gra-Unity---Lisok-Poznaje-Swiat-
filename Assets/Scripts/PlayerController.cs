@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        //Debug.Log("Kontakt z obiektem: " + col.name + " o tagu: " + col.tag);
+
         if (col.CompareTag("ResetFace"))
         {
             BuildingManager.instance.ResetPlatforms();
@@ -126,6 +128,7 @@ public class PlayerController : MonoBehaviour
         }
         if (col.CompareTag("LevelFall"))
         {
+            rigidBody.linearVelocityY = 0; ;
             transform.position = startPosition;
             GameManager.instance.AddLives(-1);
         }

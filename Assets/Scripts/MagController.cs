@@ -14,13 +14,10 @@ public class MagController : MonoBehaviour
     private float timer;
     private bool throwing = false;
 
-    float startPositionX;
-
     private void Awake()
     {
-        startPositionX = this.transform.position.x;
         animator = GetComponent<Animator>();
-        timer = throwTimer + 2.0f;
+        timer = throwTimer;
     }
 
     private void Flip()
