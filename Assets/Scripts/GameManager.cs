@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
     
     public void OnReturnToMainMenuButtonClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("GameMenu");
     }
 
     void Start()
