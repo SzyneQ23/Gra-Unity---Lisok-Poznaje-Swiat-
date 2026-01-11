@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject PlatformCounter;
 
+    public AudioSource audioSource;
+    public AudioClip dzwiekSkoku;
+    public AudioClip dzwiekDasha;
+
     private void Awake()
     {
         startPosition = transform.position;
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Debug.Log("jumping");
+            audioSource.PlayOneShot(dzwiekSkoku);
         }
     }
 
@@ -84,6 +89,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.linearVelocity = Vector2.zero;
         float direction = isFacingRight ? 1 : -1;
         float timer = dashDuration;
+        audioSource.PlayOneShot(dzwiekDasha);
         UpdateTrailEmmiting(true);
         while (timer > 0)
         {
