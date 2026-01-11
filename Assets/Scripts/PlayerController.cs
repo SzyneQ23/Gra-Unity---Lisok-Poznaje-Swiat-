@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private TrailRenderer[] dashTrails;
     Vector2 startPosition;
+    Vector2 respawnPosition;
 
     [Header("Darkness System")]
     public SpriteRenderer darknessOverlay; 
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         dashTrails = dashObject.GetComponentsInChildren<TrailRenderer>();
+        respawnPosition = startPosition;
         
         if (ghostPreview) ghostPreview.SetActive(false);
     }
@@ -75,6 +77,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("jumping");
             audioSource.PlayOneShot(dzwiekSkoku);
         }
+    }
+
+    public void SetRespawn(Vector2 pos)
+    {
+        respawnPosition = pos;
+        Debug.Log("Ustawiono checkpoint!");
     }
 
     IEnumerator Dash()
@@ -135,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (col.CompareTag("LevelFall"))
         {
             rigidBody.linearVelocityY = 0; ;
-            transform.position = startPosition;
+            transform.position = respawnPosition;
             GameManager.instance.AddLives(-1);
 
             if(GameManager.instance.lives==0)
@@ -153,7 +161,7 @@ public class PlayerController : MonoBehaviour
             if (transform.position.y > col.gameObject.transform.position.y) GameManager.instance.AddEnemiesKilled();
             else
             {
-                transform.position = startPosition;
+                transform.position = respawnPosition;
                 GameManager.instance.AddLives(-1);
             }
         }
