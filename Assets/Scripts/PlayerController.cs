@@ -137,6 +137,11 @@ public class PlayerController : MonoBehaviour
             rigidBody.linearVelocityY = 0; ;
             transform.position = startPosition;
             GameManager.instance.AddLives(-1);
+
+            if(GameManager.instance.lives==0)
+            {
+                GameManager.instance.LevelCompleted();
+            }
         }
         if (col.CompareTag("Bonus"))
         {

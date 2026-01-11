@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         if (newGameState==GameState.LEVEL_COMPLETED)
         {
             Scene currentScene=SceneManager.GetActiveScene();
-            if (currentScene.name=="Level 1")
+            if (currentScene.name=="LevelArchitektura")
             {
                 int highScore=PlayerPrefs.GetInt(keyHighScore);
                 if (highScore<score)
