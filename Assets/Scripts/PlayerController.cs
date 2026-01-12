@@ -164,6 +164,11 @@ public class PlayerController : MonoBehaviour
                 transform.position = respawnPosition;
                 GameManager.instance.AddLives(-1);
             }
+
+            if(GameManager.instance.lives==0)
+            {
+                GameManager.instance.GameOver();
+            }
         }
         if (col.CompareTag("Key"))
         {

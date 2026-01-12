@@ -6749,7 +6749,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.8239336, y: 0}
+  m_Offset: {x: 0.8239336, y: 1.518036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6759,7 +6759,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 9.49358, y: 1}
+  m_Size: {x: 9.49358, y: 4.036072}
   m_EdgeRadius: 0
 --- !u!4 &530540700
 Transform:
@@ -58549,8 +58549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcceee85c987846ac95f201df02c149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Stawiaj dostepne platformy przy uzyciu przycisku "C", maska na srodku
-    resetuje uklad platform
+  message: Stawiaj dostepne platformy przy uzyciu przycisku "C" oraz LPM, maska na
+    srodku resetuje uklad platform
   uiTextElement: {fileID: 1749832409}
   signCanvasElement: {fileID: 0}
 --- !u!212 &1723344594

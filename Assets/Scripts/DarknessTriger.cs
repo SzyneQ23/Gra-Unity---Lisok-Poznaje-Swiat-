@@ -10,7 +10,14 @@ public class DarknessTrigger : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             foxDarknessMask.SetActive(!disableOnEnter);
-            Debug.Log(disableOnEnter ? "Ciemność wyłączona" : "Ciemność włączona");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            foxDarknessMask.SetActive(disableOnEnter);
         }
     }
 }
