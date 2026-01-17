@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
             float verticalVelocity = rigidBody.linearVelocity.y;
             animator.SetFloat("verticalSpeed", verticalVelocity);
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash && !isDashing)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isDashing)
             {
                 StartCoroutine(Dash());
             }
