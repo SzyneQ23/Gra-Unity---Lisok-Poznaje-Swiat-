@@ -286,8 +286,8 @@ public class PlayerController : MonoBehaviour
             if (coyoteTimer > 0)
             {
                 bool pressJumpSpace = Input.GetKeyDown(KeyCode.Space);
-                bool pressJumpMouse = Input.GetMouseButton(0) && !isBuildingMode;
-                if ((pressJumpSpace || pressJumpMouse) && !isJumping)
+                //bool pressJumpMouse = Input.GetMouseButton(0) && !isBuildingMode;
+                if (pressJumpSpace && !isJumping)
                 {
                     Jump();
                 }

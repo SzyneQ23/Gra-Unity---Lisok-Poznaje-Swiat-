@@ -3,23 +3,22 @@ using UnityEngine;
 public class PointItem : MonoBehaviour
 {
     [Header("Ustawienia Ruchu")]
-    public float amplituda = 0.5f; // Jak wysoko i nisko ma latać
-    public float czestotliwosc = 1f; // Jak szybko ma się poruszać
+    public float amplituda = 0.5f;
+    public float czestotliwosc = 1f;
 
     [Header("Ustawienia Dźwięku")]
     public AudioClip dzwiekZebrania;
+    [Range(0f, 1f)] public float glosnosc = 0.5f; 
 
     private Vector3 pozycjaStartowa;
 
     void Start()
     {
-        // Zapamiętujemy miejsce, w którym postawiliśmy przedmiot
         pozycjaStartowa = transform.position;
     }
 
     void Update()
     {
-        // Efekt lewitacji (używamy funkcji Sinus do płynnego ruchu)
         float nowaWysokosc = Mathf.Sin(Time.time * czestotliwosc) * amplituda;
         transform.position = pozycjaStartowa + new Vector3(0, nowaWysokosc, 0);
     }
@@ -34,12 +33,11 @@ public class PointItem : MonoBehaviour
 
     void ZebierzPunkt()
     {
-        // Odtwarzamy dźwięk w miejscu kamery (żeby był wyraźny nawet po zniszczeniu obiektu)
         if (dzwiekZebrania != null)
         {
-            AudioSource.PlayClipAtPoint(dzwiekZebrania, Camera.main.transform.position);
+            
+            AudioSource.PlayClipAtPoint(dzwiekZebrania, Camera.main.transform.position, glosnosc);
         }
-
 
         Debug.Log("Punkt zebrany!");
         Destroy(gameObject);
