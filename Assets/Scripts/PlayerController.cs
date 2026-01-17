@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool canDash = true;
     private bool isJumping = false;
+    private bool canMove = true;
     private TrailRenderer[] dashTrails;
     Vector2 startPosition;
     Vector2 respawnPosition;
@@ -117,6 +118,16 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
+    IEnumerator DisableMovement(float time)
+    {
+        canMove = false;
+        rigidBody.linearVelocityX = 0;
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isGrounded", true);
+        yield return new WaitForSeconds(time);
+        canMove = true;
+    }
+
     private void UpdateTrailEmmiting(bool isEmitting)
     {
         foreach (TrailRenderer trail in dashTrails)
@@ -206,6 +217,10 @@ public class PlayerController : MonoBehaviour
             StartFade(1.0f);
             PlatformCounter.SetActive(true);
         }
+        if (col.CompareTag("Door"))
+        {
+            StartCoroutine(DisableMovement(0.4f));
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -229,6 +244,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == GameState.GAME)
         {
+            if (!canMove) return;
+
             float verticalVelocity = rigidBody.linearVelocity.y;
             animator.SetFloat("verticalSpeed", verticalVelocity);
 
@@ -273,12 +290,12 @@ public class PlayerController : MonoBehaviour
                 if ((pressJumpSpace || pressJumpMouse) && !isJumping)
                 {
                     Jump();
-                    Debug.Log("SKOK!");
                 }
             }
 
             animator.SetBool("isGrounded", IsGrounded());
             animator.SetBool("isRunning", isRunning);
+
 
             if (Input.GetKeyDown(KeyCode.C))
             {

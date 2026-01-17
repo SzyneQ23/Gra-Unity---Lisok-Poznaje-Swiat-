@@ -15,6 +15,7 @@ TagManager:
   - PlatformPickup
   - ResetFace
   - PlatformCount
+  - Door
   layers:
   - Default
   - TransparentFX
