@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c9aa82dece04dd439cd48f1c535ca4a
+guid: 09e889e4efa2c674ea908794f906a27e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4117175144680042724
-    second: portalOff_0
+      213: 2900573818660442195
+    second: portal1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: portalOff_0
+      name: portal1_0
       rect:
         serializedVersion: 2
         x: 7
-        y: 10
+        y: 9
         width: 87
-        height: 110
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e0b8b8faf4232930800000000000000
-      internalID: 4117175144680042724
+      spriteID: 350dd0a2588e04820800000000000000
+      internalID: 2900573818660442195
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      portalOff_0: 4117175144680042724
+      portal1_0: 2900573818660442195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

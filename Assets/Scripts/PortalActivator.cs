@@ -18,10 +18,12 @@ public class PortalActivator : MonoBehaviour
     public AudioClip teleportSound;
 
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
-   private void Awake()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         if (audioSource == null) audioSource = GetComponent<AudioSource>();
         UpdatePortalVisuals();
     }
@@ -43,7 +45,8 @@ public class PortalActivator : MonoBehaviour
 
     private void UpdatePortalVisuals()
     {
-        spriteRenderer.sprite = isActivated ? portalOnSprite : portalOffSprite;
+        animator.SetBool("isActive", isActivated);
+        //spriteRenderer.sprite = isActivated ? portalOnSprite : portalOffSprite;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
