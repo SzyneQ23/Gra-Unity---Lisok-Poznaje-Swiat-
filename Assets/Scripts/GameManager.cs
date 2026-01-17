@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             {
                 livesTab[lives-1].enabled=false;
             }
-            else if (livesNumber>0)
+            else if (livesNumber>0 && lives < 3)
             {
                 livesTab[lives].enabled=true;
             }

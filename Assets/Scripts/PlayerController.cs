@@ -182,8 +182,11 @@ public class PlayerController : MonoBehaviour
         }
         if (col.CompareTag("Heart"))
         {
-            GameManager.instance.AddLives(1);
-            col.gameObject.SetActive(false);
+            if (GameManager.instance.lives < 3)
+            {
+                GameManager.instance.AddLives(1);
+                col.gameObject.SetActive(false);
+            }
         }
         if (col.CompareTag("MovingPlatform"))
         {

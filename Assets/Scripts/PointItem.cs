@@ -40,8 +40,6 @@ public class PointItem : MonoBehaviour
             AudioSource.PlayClipAtPoint(dzwiekZebrania, Camera.main.transform.position);
         }
 
-        // Tutaj dodaj swoją logikę punktów, np.:
-        // GameManager.instance.DodajPunkt(1);
 
         Debug.Log("Punkt zebrany!");
         Destroy(gameObject);
