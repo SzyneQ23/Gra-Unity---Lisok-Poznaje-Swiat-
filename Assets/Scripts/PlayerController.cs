@@ -285,6 +285,16 @@ public class PlayerController : MonoBehaviour
                 isBuildingMode = !isBuildingMode;
                 if (ghostPreview) ghostPreview.SetActive(isBuildingMode);
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (isInCastleArea)
+                {
+                    BuildingManager.instance.ResetPlatforms();
+
+                    rigidBody.linearVelocity = Vector2.zero; 
+                    transform.position = new Vector2(-8.792f, -0.013f);
+                }
+            }
 
             if (isBuildingMode)
             {
