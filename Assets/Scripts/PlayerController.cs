@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 3.0f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1.0f;
+    [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private GameObject dashObject;
+    private float coyoteTimer;
     private Rigidbody2D rigidBody;
     private BoxCollider2D coll;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool isFacingRight = true;
     private bool canDash = true;
+    private bool isJumping = false;
     private TrailRenderer[] dashTrails;
     Vector2 startPosition;
     Vector2 respawnPosition;
@@ -71,12 +74,12 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (IsGrounded())
-        {
-            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Debug.Log("jumping");
-            audioSource.PlayOneShot(dzwiekSkoku);
-        }
+        isJumping = true;
+        coyoteTimer = 0;
+        rigidBody.linearVelocityY = 0;
+        rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        Debug.Log("jumping");
+        audioSource.PlayOneShot(dzwiekSkoku);
     }
 
     public void SetRespawn(Vector2 pos)
@@ -247,9 +250,26 @@ public class PlayerController : MonoBehaviour
                 if (isFacingRight) { Flip(); isFacingRight = false; }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !isBuildingMode))
+            if (IsGrounded())
             {
-                Jump();
+                if (rigidBody.linearVelocity.y <= 0.1f)
+                {
+                    isJumping = false;
+                    coyoteTimer = coyoteTime;
+                }
+            }
+            else
+            {
+                coyoteTimer -= Time.deltaTime;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && coyoteTimer > 0 && !isBuildingMode)
+            {
+                if (!isJumping)
+                {
+                    Jump();
+                    Debug.Log("SKOK!");
+                }
             }
 
             animator.SetBool("isGrounded", IsGrounded());

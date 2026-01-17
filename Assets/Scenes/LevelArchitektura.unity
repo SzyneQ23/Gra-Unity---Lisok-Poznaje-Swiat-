@@ -28923,6 +28923,7 @@ MonoBehaviour:
   dashSpeed: 3
   dashDuration: 0.2
   dashCooldown: 1
+  coyoteTime: 1
   dashObject: {fileID: 1673808851}
   darknessOverlay: {fileID: 2090197124}
   fadeSpeed: 1
