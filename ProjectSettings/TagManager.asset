@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - LevelExit
+  - LevelFall
+  - Bonus
+  - Enemy
+  - Key
+  - Heart
+  - MovingPlatform
+  - Castle
+  - PlatformPickup
+  - ResetFace
+  - PlatformCount
+  - Door
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4146665929
+    locked: 0
+  - name: Tilemap
+    uniqueID: 1307916315
+    locked: 0
+  - name: Props
+    uniqueID: 1580709115
+    locked: 0
+  - name: Player and Enemies
+    uniqueID: 851628687
+    locked: 0
+  - name: Foreground
+    uniqueID: 2995764635
+    locked: 0
+  - name: Regiony
+    uniqueID: 191905053
+    locked: 0
+  - name: Puzzle
+    uniqueID: 1388425925
+    locked: 0
+  m_RenderingLayers:
+  - Default
