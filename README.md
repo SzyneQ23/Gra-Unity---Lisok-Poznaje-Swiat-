@@ -6,12 +6,7 @@ A dynamic 2D platformer game developed as a university project. The game focuses
 
 ## 🎮 Gameplay Trailer
 
-<div align="center">
-  <h3>Watch the Gameplay Trailer 🦊</h3>
-  <video src="GameTrailerLisok.mp4" width="600" controls preload="none">
-    Twoja przeglądarka nie obsługuje wideo.
-  </video>
-</div>
+[Download/Watch Trailer Video](./GameTrailerLisok.mp4)
 
 ---
 
