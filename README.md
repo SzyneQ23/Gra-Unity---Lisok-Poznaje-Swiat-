@@ -4,11 +4,15 @@ A dynamic 2D platformer game developed as a university project. The game focuses
 
 ---
 
-## 🎮 Gameplay Trailer
+## 🎮 Gameplay Screenshots
+<div align="center">
+ <img src="Assets/Screenshots/image.png" width="100%">
+ <img src="Assets/Screenshots/image2.png" width="100%">
+ <img src="Assets/Screenshots/image3.png" width="100%">
+ <img src="Assets/Screenshots/image4.png" width="100%">
+ <img src="Assets/Screenshots/image5.png" width="100%">
+</div>
 
-[Download/Watch Trailer Video](./GameTrailerLisok.mp4)
-
----
 
 ## 🚀 Project Overview
 This project was created as part of a collaborative academic task at **Gdańsk University of Technology**. The goal was to implement a functional game loop, character physics, and interactive world elements using the Unity engine.
